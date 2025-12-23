@@ -1,0 +1,58 @@
+{
+  "name": "portfolio-v3",
+  "version": "3.0.0",
+  "description": "Modern portfolio website built with Next.js 16, TypeScript, and Tailwind CSS featuring stunning animations and interactive components",
+  "author": "Anupa Dinuranga",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnuV6/portfolio-v3.git"
+  },
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "react",
+    "devops",
+    "cybersecurity",
+    "personal-website",
+    "AnupaDinuranga"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.12.1",
+    "@fancyapps/ui": "^5.0.33",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.23",
+    "bootstrap": "^5.3.3",
+    "emailjs-com": "^3.2.0",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.7",
+    "locomotive-scroll": "^4.1.4",
+    "next": "^16.0.7",
+    "postcss": "^8.5.6",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-player": "^2.14.1",
+    "react-toastify": "^10.0.6",
+    "swiper": "^11.1.4",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@types/locomotive-scroll": "^4.1.4",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.9.3"
+  }
+}
