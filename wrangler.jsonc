@@ -1,5 +1,6 @@
 {
   "name": "portfolio-v3",
   "compatibility_date": "2025-12-23",
-  "pages_build_output_dir": "./out"
+  "pages_build_output_dir": "./out",
+  "send_metrics": false
 }

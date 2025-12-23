@@ -1,0 +1,40 @@
+# Cloudflare Pages Ignore File
+# Files and directories to exclude from deployment
+
+# Dependencies
+node_modules/
+
+# Source files (only deploy built output)
+app/
+components/
+context/
+layout/
+utility/
+
+# Config files
+*.config.*
+tsconfig.json
+jsconfig.json
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+LICENSE
+*.md
+!out/**/*.md
+
+# Development files
+.vscode/
+.idea/
+*.log
+
+# Environment files
+.env*
+!.env.example
+
+# Build artifacts
+.next/
+.turbo/
