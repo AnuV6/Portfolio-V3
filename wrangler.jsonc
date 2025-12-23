@@ -4,8 +4,5 @@
   "send_metrics": false,
   "assets": {
     "directory": "./out"
-  },
-  "build": {
-    "command": "npm run build && npm run export"
   }
 }

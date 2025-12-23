@@ -1,0 +1,11 @@
+# Cloudflare Pages configuration for Next.js static export
+# See: https://developers.cloudflare.com/pages/configuration/
+
+# Directory containing the built static assets
+pages_build_output_dir = "./out"
+
+# Optional: define a build command for Pages (Wrangler may skip if using JSONC)
+# Uncomment if you want Pages to run the build automatically
+# [build]
+# command = "npm run export"
+# cwd = "."
