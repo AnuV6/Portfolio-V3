@@ -323,16 +323,6 @@ You are free to use this project for personal or commercial purposes.
 
 ---
 
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - The React Framework for Production
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
-- [Vercel](https://vercel.com/) - Deployment and hosting platform
-- [Font Awesome](https://fontawesome.com/) - Icon library
-- All the amazing open-source contributors
-
----
-
 ## 🔄 Version History
 
 ### v3.0.0 (December 24, 2025)
@@ -350,7 +340,6 @@ You are free to use this project for personal or commercial purposes.
 
 ### ⭐ Star this repo if you find it helpful!
 
-**Built with ❤️ using Next.js, TypeScript, and Tailwind CSS**
 
 [⬆ Back to Top](#-portfolio-v3)
 
