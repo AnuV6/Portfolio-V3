@@ -1,6 +1,6 @@
 <div align="center">
 
-# ï¿½ï¿½ Portfolio V3
+# ğŸš€ Portfolio V3
 
 ### Modern Portfolio Website Built with Next.js 16 & TypeScript
 
@@ -18,7 +18,7 @@ A stunning, production-ready portfolio featuring glass morphism design, interact
 
 ---
 
-## í³¸ Preview
+## ğŸ“¸ Preview
 
 <!-- Replace 'preview.png' with your actual screenshot -->
 <div align="center">
@@ -34,7 +34,7 @@ A stunning, production-ready portfolio featuring glass morphism design, interact
 <tr>
 <td>
 
-### í¾¨ Design & UX
+### ğŸ¨ Design & UX
 - **Glass Morphism UI** with neon cyan accents
 - **Smooth Animations** powered by Locomotive Scroll
 - **Interactive Spotlight Cards** with mouse tracking
@@ -56,7 +56,7 @@ A stunning, production-ready portfolio featuring glass morphism design, interact
 <tr>
 <td>
 
-### í¾­ Interactive Components
+### ğŸ­ Interactive Components
 - Mouse-tracking spotlight effects
 - Animated statistics counters
 - Dynamic project carousel with Swiper
@@ -79,7 +79,7 @@ A stunning, production-ready portfolio featuring glass morphism design, interact
 
 ---
 
-## í» ï¸ Tech Stack
+## ğŸ› ï¸ Tech Stack
 
 ### Core Technologies
 ```
@@ -102,7 +102,7 @@ Build Tool           â†’ Turbopack
 
 ---
 
-## í³¦ Getting Started
+## ğŸ“¦ Getting Started
 
 ### Prerequisites
 
@@ -142,11 +142,11 @@ Build Tool           â†’ Turbopack
    npm run dev
    ```
    
-   Open [http://localhost:3000](http://localhost:3000) in your browser íº€
+   Open [http://localhost:3000](http://localhost:3000) in your browser ğŸš€
 
 ---
 
-## í¿—ï¸ Build & Deployment
+## ğŸ—ï¸ Build & Deployment
 
 ### Production Build
 ```bash
@@ -177,17 +177,17 @@ vercel --prod
 
 ---
 
-## í³ Project Structure
+## ğŸ“ Project Structure
 
 ```
 portfolio-v3/
-â”œâ”€â”€ í³‚ app/                          # Next.js App Router
+â”œâ”€â”€ ğŸ“‚ app/                          # Next.js App Router
 â”‚   â”œâ”€â”€ globals.css                 # Global styles & animations
 â”‚   â”œâ”€â”€ layout.tsx                  # Root layout component
 â”‚   â”œâ”€â”€ loading.tsx                 # Loading UI
 â”‚   â””â”€â”€ page.tsx                    # Home page
 â”‚
-â”œâ”€â”€ í³‚ components/                   # React components
+â”œâ”€â”€ ğŸ“‚ components/                   # React components
 â”‚   â”œâ”€â”€ ScrollToTopButton.tsx       # Scroll to top button
 â”‚   â”œâ”€â”€ ProfileSidebar.tsx          # Profile card with avatar
 â”‚   â”œâ”€â”€ NavigationBar.tsx           # Fixed navigation header
@@ -204,18 +204,18 @@ portfolio-v3/
 â”‚   â”œâ”€â”€ Skeleton.tsx                # Loading skeletons
 â”‚   â””â”€â”€ ...
 â”‚
-â”œâ”€â”€ í³‚ context/                      # React Context API
+â”œâ”€â”€ ğŸ“‚ context/                      # React Context API
 â”‚   â””â”€â”€ context.tsx                 # Global state management
 â”‚
-â”œâ”€â”€ í³‚ layout/                       # Layout components
+â”œâ”€â”€ ğŸ“‚ layout/                       # Layout components
 â”‚   â””â”€â”€ TrueManLayout.tsx           # Main layout wrapper
 â”‚
-â”œâ”€â”€ í³‚ public/                       # Static assets
+â”œâ”€â”€ ğŸ“‚ public/                       # Static assets
 â”‚   â”œâ”€â”€ img/                        # Images & icons
 â”‚   â”œâ”€â”€ files/                      # Documents (CV, etc.)
 â”‚   â””â”€â”€ css/                        # CSS plugins
 â”‚
-â”œâ”€â”€ í³‚ utility/                      # Helper functions
+â”œâ”€â”€ ğŸ“‚ utility/                      # Helper functions
 â”‚   â”œâ”€â”€ index.ts                    # Utility functions
 â”‚   â”œâ”€â”€ sliderProps.ts              # Swiper configurations
 â”‚   â””â”€â”€ typing.ts                   # Typing animation
@@ -232,7 +232,7 @@ portfolio-v3/
 
 ---
 
-## í¾¨ Customization Guide
+## ğŸ¨ Customization Guide
 
 ### Update Personal Information
 
@@ -265,7 +265,7 @@ portfolio-v3/
 
 ---
 
-## í³Š Performance Metrics
+## ğŸ“Š Performance Metrics
 
 ```
 âœ“ Lighthouse Score         95+/100
@@ -277,7 +277,7 @@ portfolio-v3/
 
 ---
 
-## í°› Known Issues & Solutions
+## ğŸ› Known Issues & Solutions
 
 | Issue | Solution |
 |-------|----------|
@@ -287,7 +287,7 @@ portfolio-v3/
 
 ---
 
-## í´ Contributing
+## ğŸ¤ Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -299,7 +299,7 @@ Contributions are welcome! Here's how you can help:
 
 ---
 
-## í³„ License
+## ğŸ“„ License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
@@ -307,7 +307,7 @@ You are free to use this project for personal or commercial purposes.
 
 ---
 
-## í±¨â€ï¿½ï¿½ Author
+## ğŸ‘¨â€ğŸ’» Author
 
 <div align="center">
 
@@ -323,7 +323,7 @@ You are free to use this project for personal or commercial purposes.
 
 ---
 
-## í¹ Acknowledgments
+## ğŸ™ Acknowledgments
 
 - [Next.js](https://nextjs.org/) - The React Framework for Production
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
@@ -333,16 +333,16 @@ You are free to use this project for personal or commercial purposes.
 
 ---
 
-## í´„ Version History
+## ğŸ”„ Version History
 
 ### v3.0.0 (December 24, 2025)
 - âœ¨ Complete codebase refactor with semantic component naming
 - âš¡ Updated to Next.js 16 with Turbopack
-- í¾¨ Integrated Tailwind CSS v4
+- ğŸ¨ Integrated Tailwind CSS v4
 - â™¿ Enhanced accessibility with ARIA labels
-- í³ˆ Improved performance and SEO
-- í³š Comprehensive documentation
-- íº€ Production-ready build
+- ğŸ“ˆ Improved performance and SEO
+- ğŸ“š Comprehensive documentation
+- ğŸš€ Production-ready build
 
 ---
 
