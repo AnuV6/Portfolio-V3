@@ -10,9 +10,15 @@
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# Lockfiles – allow committing for reproducible builds & CI caching
+# (Unignore so Cloudflare Pages can cache installs/builds)
+#! If you prefer a different manager, keep only its lockfile committed.
+#! e.g., commit ONE of: package-lock.json | pnpm-lock.yaml | yarn.lock | bun.lockb
+#! Remove the others as appropriate.
+#! The following lines were removed to allow committing lockfiles:
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
 
 # Testing
 /coverage
