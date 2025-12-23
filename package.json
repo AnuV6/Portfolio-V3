@@ -25,7 +25,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export"
+    "export": "next export",
+    "deploy:pages": "wrangler pages deploy out --project-name=portfolio-v3"
   },
   "dependencies": {
     "@emailjs/browser": "^3.12.1",

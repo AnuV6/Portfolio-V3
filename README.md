@@ -170,6 +170,22 @@ npm install -g vercel
 vercel --prod
 ```
 
+### Deploy to Cloudflare Pages
+
+**Using Cloudflare Pages Dashboard:**
+1. Connect your GitHub repository
+2. Configure build settings:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+3. Deploy!
+
+**Using Wrangler CLI:**
+```bash
+npm install -g wrangler
+npm run build
+npx wrangler pages deploy out --project-name=portfolio-v3
+```
+
 ### Other Platforms
 - **Netlify**: Connect your GitHub repo and deploy
 - **AWS Amplify**: Use the AWS Amplify Console
