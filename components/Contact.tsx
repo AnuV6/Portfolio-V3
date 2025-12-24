@@ -123,6 +123,21 @@ const ContactForm = () => {
                     <span className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-primary">Contact Me</span>
                     <i className="fas fa-paper-plane text-2xl text-gray-700" aria-hidden="true" />
                 </h2>
+                
+                {/* Email Section */}
+                <div className="mb-8 text-center md:text-left">
+                    <p className="text-gray-400 text-base mb-3">
+                        Send me a message through the form below or reach out directly:
+                    </p>
+                    <a 
+                        href="mailto:contact@anupa.live" 
+                        className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-primary/10 border-2 border-primary/30 text-primary hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 group"
+                    >
+                        <i className="fas fa-envelope text-lg group-hover:scale-110 transition-transform" />
+                        <span className="font-semibold">contact@anupa.live</span>
+                        <i className="fas fa-external-link-alt text-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                </div>
             </div>
             <div className="col-lg-12 mb-12">
                 <div className="glass-card p-6 md:p-10 rounded-2xl relative overflow-hidden shadow-glass" data-scroll data-scroll-offset={40}>

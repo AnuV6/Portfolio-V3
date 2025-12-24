@@ -26,7 +26,11 @@ export const sliderProps = {
         slidesPerView: 1,
         effect: "fade",
         parallax: true,
-        autoplay: true,
-        speed: 1400,
+        autoplay: {
+            delay: 4000, // 4 seconds between slides
+            disableOnInteraction: false, // Continue autoplay after user interaction
+        },
+        speed: 1400, // Fade transition speed
+        loop: true, // Loop back to first slide
     },
 };

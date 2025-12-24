@@ -35,6 +35,12 @@ const NavigationBar = ({ onePage }: TopBarProps) => {
                     const id = entry.target.id;
                     if (sections.includes(id)) {
                         setActiveSection(id);
+                        // Update URL hash when scrolling to different sections
+                        if (id === 'home') {
+                            window.history.replaceState(null, '', window.location.pathname);
+                        } else {
+                            window.history.replaceState(null, '', `#${id}`);
+                        }
                     }
                 }
             });
@@ -64,6 +70,15 @@ const NavigationBar = ({ onePage }: TopBarProps) => {
         e.stopPropagation();
         setActiveSection(section);
         setMenuOpen(false);
+        
+        // Update URL hash to reflect current section
+        if (section === 'home') {
+            // Remove hash for home section
+            window.history.pushState(null, '', window.location.pathname);
+        } else {
+            // Update hash for other sections
+            window.history.pushState(null, '', `#${section}`);
+        }
         
         // Smooth scroll to section
         const element = document.getElementById(section);
@@ -116,13 +131,13 @@ const NavigationBar = ({ onePage }: TopBarProps) => {
                             {onePage ? (
                                 <>
                                     {['home', 'about', 'resume', 'portfolio', 'contact'].map((section) => (
-                                        <li key={section}>
+                                        <li key={section} className="flex items-center">
                                             <a
                                                 href={`#${section}`}
                                                 onClick={(e) => handleNavClick(e, section)}
                                                 className={`
                                                     relative px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider
-                                                    transition-all duration-300 group
+                                                    transition-all duration-300 group flex items-center
                                                     ${isActive(section)
                                                         ? 'text-primary bg-primary/10 shadow-[0_0_20px_rgba(0,212,204,0.2)]'
                                                         : 'text-gray-300 hover:text-white hover:bg-white/5'
@@ -135,7 +150,7 @@ const NavigationBar = ({ onePage }: TopBarProps) => {
                                                 </span>
                                                 {/* Active indicator */}
                                                 {isActive(section) && (
-                                                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full shadow-neon-cyan" />
+                                                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full shadow-neon-cyan" />
                                                 )}
                                                 {/* Hover effect */}
                                                 <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -145,18 +160,18 @@ const NavigationBar = ({ onePage }: TopBarProps) => {
                                 </>
                             ) : (
                                 <>
-                                    <li>
+                                    <li className="flex items-center">
                                         <Link 
                                             href="/" 
-                                            className="px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider text-gray-300 hover:text-primary hover:bg-white/5 transition-all duration-300"
+                                            className="px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider text-gray-300 hover:text-primary hover:bg-white/5 transition-all duration-300 flex items-center"
                                         >
                                             Home
                                         </Link>
                                     </li>
-                                    <li>
+                                    <li className="flex items-center">
                                         <Link 
                                             href="/portfolio" 
-                                            className="px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider text-gray-300 hover:text-primary hover:bg-white/5 transition-all duration-300"
+                                            className="px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider text-gray-300 hover:text-primary hover:bg-white/5 transition-all duration-300 flex items-center"
                                         >
                                             Portfolio
                                         </Link>

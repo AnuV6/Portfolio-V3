@@ -13,7 +13,14 @@ const Footer = () => {
                             <div className="font-bold text-2xl tracking-wider text-white mb-2">
                                 Coder<span className="text-primary neon-text">Allen</span>
                             </div>
-                            <p className="text-gray-400 text-sm">Building the future, one line at a time</p>
+                            <p className="text-gray-400 text-sm mb-2">Building the future, one line at a time</p>
+                            <a 
+                                href="mailto:contact@anupa.live" 
+                                className="text-primary hover:text-white transition-colors text-sm flex items-center gap-2"
+                            >
+                                <i className="fas fa-envelope" />
+                                contact@anupa.live
+                            </a>
                         </div>
 
                         {/* Center: Quick Links */}

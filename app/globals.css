@@ -160,14 +160,59 @@ a:hover {
   text-shadow: 0 0 8px rgba(0, 242, 234, 0.5);
 }
 
+/* Profile name override - force larger size */
+.profile-name {
+  font-size: 1rem !important; /* 24px mobile */
+}
+
+@media (min-width: 768px) {
+  .profile-name {
+    font-size: 1.25rem !important; /* 30px tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-name {
+    font-size: 2rem !important; /* 36px desktop */
+  }
+}
+
 .neon-border {
   box-shadow: 0 0 10px rgba(0, 242, 234, 0.3);
   @apply border-primary/50;
 }
 
 .neon-typed-text {
-  text-shadow: 0 0 5px rgba(0, 212, 204, 0.8), 0 0 10px rgba(0, 212, 204, 0.5);
   @apply text-primary;
+  text-shadow: 
+    0 0 2px rgba(0, 212, 204, 0.8), 
+    0 0 4px rgba(0, 212, 204, 0.4);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+  min-width: 2ch;
+  text-align: left;
+}
+
+.neon-typed-text::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(0, 212, 204, 0.9);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }
 
 /* Scrollbar */
@@ -422,4 +467,203 @@ aside {
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
+}
+
+/* Fancybox Custom Styles - Ensure close button is always visible and clickable */
+.fancybox-custom .fancybox__backdrop {
+  background: rgba(0, 0, 0, 0.95) !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure container doesn't block backdrop clicks */
+.fancybox__container {
+  pointer-events: none !important;
+}
+
+.fancybox__container > * {
+  pointer-events: auto !important;
+}
+
+.fancybox-custom .fancybox__toolbar {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.fancybox-custom .fancybox__button--close {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 52px !important;
+  height: 52px !important;
+  background: rgba(0, 212, 204, 0.3) !important;
+  border: 2px solid #00d4cc !important;
+  border-radius: 50% !important;
+  color: #00d4cc !important;
+  font-size: 28px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 999999 !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.fancybox-custom .fancybox__button--close:hover {
+  background: #00d4cc !important;
+  color: #000 !important;
+  transform: scale(1.15) rotate(90deg) !important;
+  box-shadow: 0 0 25px rgba(0, 212, 204, 0.6) !important;
+}
+
+.fancybox-custom .fancybox__button--close svg {
+  width: 24px !important;
+  height: 24px !important;
+  stroke-width: 3 !important;
+  filter: none !important;
+}
+
+/* Ensure all toolbar buttons are visible */
+.fancybox-custom .fancybox__toolbar button {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Escape key hint */
+.fancybox__container.fancybox-custom::after {
+  content: '✕ Press ESC or Click Outside to Close';
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 212, 204, 0.3);
+  border: 2px solid #00d4cc;
+  color: #00d4cc;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  z-index: 999998;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: fade-in 0.5s ease;
+  text-shadow: 0 0 10px rgba(0, 212, 204, 0.5);
+  box-shadow: 0 0 20px rgba(0, 212, 204, 0.3);
+}
+
+/* Mobile-specific Fancybox styles */
+@media (max-width: 768px) {
+  /* Larger close button for mobile touch targets */
+  .fancybox-custom .fancybox__button--close {
+    top: 10px !important;
+    right: 10px !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: rgba(0, 212, 204, 0.4) !important;
+    border: 3px solid #00d4cc !important;
+    font-size: 32px !important;
+    /* Add pulsing animation to draw attention */
+    animation: pulse-close-button 2s ease-in-out infinite;
+  }
+
+  .fancybox-custom .fancybox__button--close svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* Mobile hint text */
+  .fancybox__container.fancybox-custom::after {
+    content: '✕ Tap X or Outside to Close';
+    bottom: 20px;
+    padding: 12px 24px;
+    font-size: 14px;
+    white-space: nowrap;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  /* Add swipe-down gesture hint */
+  .fancybox__container.fancybox-custom::before {
+    content: '↓ Swipe Down to Close';
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 212, 204, 0.2);
+    border: 2px solid #00d4cc;
+    color: #00d4cc;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 999997;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fade-in 0.5s ease, bounce-hint 2s ease-in-out infinite;
+  }
+
+  /* Make all toolbar buttons bigger for touch */
+  .fancybox-custom .fancybox__toolbar button {
+    min-width: 50px !important;
+    min-height: 50px !important;
+    font-size: 20px !important;
+  }
+
+  /* Ensure backdrop is easy to tap */
+  .fancybox-custom .fancybox__backdrop {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Make image easier to manipulate with touch */
+  .fancybox__slide {
+    touch-action: pan-x pan-y pinch-zoom !important;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .fancybox-custom .fancybox__button--close {
+    width: 56px !important;
+    height: 56px !important;
+    top: 8px !important;
+    right: 8px !important;
+  }
+
+  .fancybox__container.fancybox-custom::after {
+    font-size: 12px;
+    padding: 10px 20px;
+    bottom: 15px;
+  }
+
+  .fancybox__container.fancybox-custom::before {
+    top: 70px;
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
+/* Pulse animation for close button on mobile */
+@keyframes pulse-close-button {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 212, 204, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 212, 204, 0.7);
+  }
+}
+
+/* Bounce hint animation */
+@keyframes bounce-hint {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(5px);
+  }
 }

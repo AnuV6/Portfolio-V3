@@ -78,6 +78,29 @@ import SpotlightCard from "@/components/SpotlightCard";
 const Portfolio = () => {
     // Reinitialize Fancybox when component mounts (for lazy-loaded components)
     useEffect(() => {
+        // First unbind any existing bindings to prevent duplicates
+        Fancybox.unbind("[data-fancybox='portfolio']");
+        Fancybox.close();
+        
+        // Add global keyboard listener to force close on ESC
+        const handleEscapeKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' || e.keyCode === 27) {
+                const fancyboxContainer = document.querySelector('.fancybox__container');
+                if (fancyboxContainer) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    Fancybox.close();
+                    console.log("Force closing Fancybox via ESC key");
+                    return false;
+                }
+            }
+        };
+
+        // Add listener with capture phase to intercept before other handlers
+        document.addEventListener('keydown', handleEscapeKey, { capture: true });
+        
+        // Then bind with proper configuration
         Fancybox.bind("[data-fancybox='portfolio']", {
             animationEffect: "zoom-in-out",
             animationDuration: 400,
@@ -100,22 +123,69 @@ const Portfolio = () => {
                 autoStart: true,
                 axis: "x",
             },
-            dragToClose: true,
+            // Mobile-friendly settings
+            dragToClose: true, // Allow swipe down to close on mobile
+            touch: {
+                vertical: true, // Enable vertical swipe gestures
+                momentum: true, // Smooth scrolling with momentum
+            },
             closeButton: "top",
             mainClass: "fancybox-custom",
             keyboard: {
                 Escape: "close",
                 Delete: "close",
                 Backspace: "close",
+                PageUp: "close",
                 ArrowLeft: "prev",
                 ArrowRight: "next",
             },
-            backdropClick: "close",
+            backdropClick: "close", // Tap backdrop to close on mobile
             hideScrollbar: true,
+            autoFocus: false,
+            trapFocus: false,
+            placeFocusBack: true,
+            // Mobile optimizations
+            mobile: {
+                clickContent: "toggleZoom",
+                clickSlide: "close",
+                dblclickContent: false,
+                dblclickSlide: false,
+            },
+            on: {
+                init: (fancybox: any) => {
+                    console.log("Fancybox portfolio initialized");
+                },
+                reveal: (fancybox: any) => {
+                    console.log("Fancybox revealed - ESC key should close");
+                    
+                    // Add mobile-specific touch event listeners
+                    if ('ontouchstart' in window) {
+                        const container = document.querySelector('.fancybox__container');
+                        if (container) {
+                            // Add visual feedback for mobile users
+                            (container as HTMLElement).style.cursor = 'pointer';
+                        }
+                    }
+                },
+                close: (fancybox: any) => {
+                    console.log("Fancybox portfolio closed");
+                },
+                done: (fancybox: any, slide: any) => {
+                    // Ensure close button is always visible
+                    const closeBtn = document.querySelector('.fancybox__button--close');
+                    if (closeBtn) {
+                        (closeBtn as HTMLElement).style.display = 'flex';
+                        (closeBtn as HTMLElement).style.opacity = '1';
+                        (closeBtn as HTMLElement).style.pointerEvents = 'auto';
+                    }
+                }
+            }
         } as any);
 
         return () => {
+            document.removeEventListener('keydown', handleEscapeKey, { capture: true });
             Fancybox.unbind("[data-fancybox='portfolio']");
+            Fancybox.close();
         };
     }, []);
 

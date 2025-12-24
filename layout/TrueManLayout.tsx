@@ -22,9 +22,9 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
         trueManUtility.scrollAnimation();
     }, []);
 
-    // Initialise Fancybox
+    // Initialise Fancybox (excluding portfolio items which have their own binding)
     useEffect(() => {
-        Fancybox.bind("[data-fancybox]", {
+        Fancybox.bind("[data-fancybox]:not([data-fancybox='portfolio'])", {
             // Animation settings
             animationEffect: "zoom-in-out",
             animationDuration: 400,
@@ -80,7 +80,7 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
         } as any);
         
         return () => {
-            Fancybox.unbind("[data-fancybox]");
+            Fancybox.unbind("[data-fancybox]:not([data-fancybox='portfolio'])");
             Fancybox.close();
         };
     }, []);
@@ -115,20 +115,20 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
             {/* Main scroll container */}
             <div id="trm-scroll-container">
                 {/* Home banner section with sidebar */}
-                <section id="home" className="relative w-full min-h-screen">
+                <section id="home" className="relative w-full">
                     <div className="container mx-auto px-4 md:px-8">
-                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-screen pt-24 pb-4">
-                            {/* Sidebar - Shares space with banner, sticky within home section */}
+                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 pt-24 pb-4">
+                            {/* Sidebar - Fixed height matching banner */}
                             {!noSidebar && (
                                 <aside className="hidden lg:block lg:w-[280px] xl:w-[320px] flex-shrink-0">
-                                    <div className="sticky top-32">
+                                    <div className="sticky top-32 h-[600px]">
                                         <ProfileSidebar />
                                     </div>
                                 </aside>
                             )}
                             
-                            {/* Banner - Shares space with sidebar */}
-                            <div className="flex-1 w-full min-h-screen flex items-center">
+                            {/* Banner - Matches sidebar height */}
+                            <div className="w-full md:w-4/5 lg:flex-1 h-[600px] flex items-center mx-auto">
                                 <HeroBanner centerTitle={noSidebar} />
                             </div>
                         </div>
@@ -139,7 +139,9 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                 <div className="w-full relative">
                     <div className="container mx-auto px-4 md:px-8">
                         <main className="w-full relative" id="main-content" role="main">
-                            {children}
+                            <div className="mt-12 md:mt-16 lg:mt-20">
+                                {children}
+                            </div>
                             <div className="w-full h-px bg-white/10 my-10" />
                             <Footer />
                         </main>
