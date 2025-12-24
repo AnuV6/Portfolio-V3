@@ -14,8 +14,8 @@ const Footer = () => {
                                 Coder<span className="text-primary neon-text">Allen</span>
                             </div>
                             <p className="text-gray-400 text-sm mb-2">Building the future, one line at a time</p>
-                            <a 
-                                href="mailto:contact@anupa.live" 
+                            <a
+                                href="mailto:contact@anupa.live"
                                 className="text-primary hover:text-white transition-colors text-sm flex items-center gap-2"
                             >
                                 <i className="fas fa-envelope" />
@@ -38,7 +38,7 @@ const Footer = () => {
                                 <ul className="space-y-2 text-sm">
                                     <li><a href="https://github.com/AnuV6" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">GitHub</a></li>
                                     <li><a href="https://www.linkedin.com/in/anupadinuranga/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">LinkedIn</a></li>
-                                    <li><a href="https://twitter.com/AnuV6" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">Twitter</a></li>
+                                    <li><a href="mailto:contact@anupa.live" className="text-gray-400 hover:text-primary transition-colors">Email</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -51,8 +51,8 @@ const Footer = () => {
                             <a href="https://www.linkedin.com/in/anupadinuranga/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-surface/50 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary hover:shadow-neon-cyan transition-all duration-300" aria-label="LinkedIn">
                                 <i className="fab fa-linkedin-in" />
                             </a>
-                            <a href="https://twitter.com/AnuV6" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-surface/50 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary hover:shadow-neon-cyan transition-all duration-300" aria-label="Twitter">
-                                <i className="fab fa-twitter" />
+                            <a href="mailto:contact@anupa.live" className="w-10 h-10 rounded-lg bg-surface/50 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-primary hover:shadow-neon-cyan transition-all duration-300" aria-label="Email">
+                                <i className="fas fa-envelope" />
                             </a>
                         </div>
                     </div>

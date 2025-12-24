@@ -24,13 +24,13 @@ export const sliderProps = {
     },
     homeSlider: {
         slidesPerView: 1,
-        effect: "fade",
+        effect: "slide",
         parallax: true,
         autoplay: {
             delay: 4000, // 4 seconds between slides
             disableOnInteraction: false, // Continue autoplay after user interaction
         },
-        speed: 1400, // Fade transition speed
+        speed: 1000,
         loop: true, // Loop back to first slide
     },
 };

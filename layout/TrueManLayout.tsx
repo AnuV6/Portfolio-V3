@@ -30,14 +30,14 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
             animationDuration: 400,
             transitionEffect: "slide",
             transitionDuration: 350,
-            
+
             // Image settings
             Image: {
                 zoom: true,
                 click: "toggleZoom",
                 wheel: "zoom",
             },
-            
+
             // Toolbar buttons
             Toolbar: {
                 display: {
@@ -47,18 +47,18 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                 },
                 autoEnable: true,
             },
-            
+
             // Thumbnails
             Thumbs: {
                 autoStart: true,
                 axis: "x",
             },
-            
+
             // Caption settings
             caption: function (fancybox: any, carousel: any, slide: any) {
                 return slide.caption || "";
             },
-            
+
             // UI settings
             dragToClose: true,
             closeButton: "top",
@@ -70,15 +70,15 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                 ArrowLeft: "prev",
                 ArrowRight: "next",
             },
-            
+
             // Appearance
             backdropClick: "close",
             hideScrollbar: true,
             idle: false,
             compact: false,
-            
+
         } as any);
-        
+
         return () => {
             Fancybox.unbind("[data-fancybox]:not([data-fancybox='portfolio'])");
             Fancybox.close();
@@ -120,13 +120,13 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 pt-24 pb-4">
                             {/* Sidebar - Fixed height matching banner */}
                             {!noSidebar && (
-                                <aside className="hidden lg:block lg:w-[280px] xl:w-[320px] flex-shrink-0">
+                                <aside className="hidden lg:block max-lg:hidden lg:w-[280px] xl:w-[320px] flex-shrink-0">
                                     <div className="sticky top-32 h-[600px]">
                                         <ProfileSidebar />
                                     </div>
                                 </aside>
                             )}
-                            
+
                             {/* Banner - Matches sidebar height */}
                             <div className="w-full md:w-4/5 lg:flex-1 h-[600px] flex items-center mx-auto">
                                 <HeroBanner centerTitle={noSidebar} />

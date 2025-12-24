@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -20,6 +21,8 @@ const ContactForm = () => {
         message: "",
     });
     const [charCount, setCharCount] = useState(0);
+    const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -27,12 +30,12 @@ const ContactForm = () => {
             ...formData,
             [name]: value,
         });
-        
+
         // Update character count for message
         if (name === "message") {
             setCharCount(value.length);
         }
-        
+
         // Clear error for this field
         if (errors[name as keyof typeof errors]) {
             setErrors({
@@ -41,16 +44,16 @@ const ContactForm = () => {
             });
         }
     };
-    
+
     const validateForm = () => {
         const newErrors = {
             user_name: "",
             user_email: "",
             message: "",
         };
-        
+
         let isValid = true;
-        
+
         if (!formData.user_name.trim()) {
             newErrors.user_name = "Name is required";
             isValid = false;
@@ -58,7 +61,7 @@ const ContactForm = () => {
             newErrors.user_name = "Name must be at least 2 characters";
             isValid = false;
         }
-        
+
         if (!formData.user_email.trim()) {
             newErrors.user_email = "Email is required";
             isValid = false;
@@ -66,7 +69,7 @@ const ContactForm = () => {
             newErrors.user_email = "Please enter a valid email";
             isValid = false;
         }
-        
+
         if (!formData.message.trim()) {
             newErrors.message = "Message is required";
             isValid = false;
@@ -74,18 +77,27 @@ const ContactForm = () => {
             newErrors.message = "Message must be at least 10 characters";
             isValid = false;
         }
-        
+
         setErrors(newErrors);
         return isValid;
     };
 
+    const handleRecaptchaChange = (token: string | null) => {
+        setRecaptchaToken(token);
+    };
+
     const sendEmail = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+
         if (!validateForm()) {
             return;
         }
-        
+
+        if (!recaptchaToken) {
+            toast.error("Please complete the reCAPTCHA verification ⚠️");
+            return;
+        }
+
         setLoading(true);
 
         const templateParams = {
@@ -107,10 +119,14 @@ const ContactForm = () => {
                     setShowSuccess(true);
                     setFormData({ user_name: "", user_email: "", message: "" });
                     setCharCount(0);
+                    setRecaptchaToken(null);
+                    recaptchaRef.current?.reset();
                     setTimeout(() => setShowSuccess(false), 5000);
                 },
                 () => {
                     toast.error("Failed to send message. Please try again. ❌");
+                    setRecaptchaToken(null);
+                    recaptchaRef.current?.reset();
                 }
             )
             .finally(() => setLoading(false));
@@ -123,14 +139,14 @@ const ContactForm = () => {
                     <span className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-primary">Contact Me</span>
                     <i className="fas fa-paper-plane text-2xl text-gray-700" aria-hidden="true" />
                 </h2>
-                
+
                 {/* Email Section */}
                 <div className="mb-8 text-center md:text-left">
                     <p className="text-gray-400 text-base mb-3">
                         Send me a message through the form below or reach out directly:
                     </p>
-                    <a 
-                        href="mailto:contact@anupa.live" 
+                    <a
+                        href="mailto:contact@anupa.live"
                         className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-primary/10 border-2 border-primary/30 text-primary hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 group"
                     >
                         <i className="fas fa-envelope text-lg group-hover:scale-110 transition-transform" />
@@ -157,11 +173,10 @@ const ContactForm = () => {
                                     aria-label="Your name"
                                     aria-invalid={!!errors.user_name}
                                     aria-describedby={errors.user_name ? "name-error" : undefined}
-                                    className={`w-full bg-surface/50 backdrop-blur-sm border-2 rounded-xl px-5 py-3.5 text-white focus:outline-none transition-all duration-300 placeholder-gray-500 ${
-                                        errors.user_name 
-                                            ? 'border-secondary/50 focus:border-secondary focus:shadow-neon-pink' 
-                                            : 'border-white/10 focus:border-primary focus:shadow-neon-cyan hover:border-white/20'
-                                    }`}
+                                    className={`w-full bg-surface/50 backdrop-blur-sm border-2 rounded-xl px-5 py-3.5 text-white focus:outline-none transition-all duration-300 placeholder-gray-500 ${errors.user_name
+                                        ? 'border-secondary/50 focus:border-secondary focus:shadow-neon-pink'
+                                        : 'border-white/10 focus:border-primary focus:shadow-neon-cyan hover:border-white/20'
+                                        }`}
                                 />
                                 {errors.user_name && (
                                     <p id="name-error" className="text-secondary text-sm mt-1.5 flex items-center gap-1.5 pl-1">
@@ -180,11 +195,10 @@ const ContactForm = () => {
                                     aria-label="Your email"
                                     aria-invalid={!!errors.user_email}
                                     aria-describedby={errors.user_email ? "email-error" : undefined}
-                                    className={`w-full bg-surface/50 backdrop-blur-sm border-2 rounded-xl px-5 py-3.5 text-white focus:outline-none transition-all duration-300 placeholder-gray-500 ${
-                                        errors.user_email 
-                                            ? 'border-secondary/50 focus:border-secondary focus:shadow-neon-pink' 
-                                            : 'border-white/10 focus:border-primary focus:shadow-neon-cyan hover:border-white/20'
-                                    }`}
+                                    className={`w-full bg-surface/50 backdrop-blur-sm border-2 rounded-xl px-5 py-3.5 text-white focus:outline-none transition-all duration-300 placeholder-gray-500 ${errors.user_email
+                                        ? 'border-secondary/50 focus:border-secondary focus:shadow-neon-pink'
+                                        : 'border-white/10 focus:border-primary focus:shadow-neon-cyan hover:border-white/20'
+                                        }`}
                                 />
                                 {errors.user_email && (
                                     <p id="email-error" className="text-secondary text-sm mt-1.5 flex items-center gap-1.5 pl-1">
@@ -205,11 +219,10 @@ const ContactForm = () => {
                                 aria-label="Your message"
                                 aria-invalid={!!errors.message}
                                 aria-describedby={errors.message ? "message-error" : "message-hint"}
-                                className={`w-full bg-surface/50 backdrop-blur-sm border-2 rounded-xl px-5 py-3.5 text-white focus:outline-none transition-all duration-300 placeholder-gray-500 resize-none ${
-                                    errors.message 
-                                        ? 'border-secondary/50 focus:border-secondary focus:shadow-neon-pink' 
-                                        : 'border-white/10 focus:border-primary focus:shadow-neon-cyan hover:border-white/20'
-                                }`}
+                                className={`w-full bg-surface/50 backdrop-blur-sm border-2 rounded-xl px-5 py-3.5 text-white focus:outline-none transition-all duration-300 placeholder-gray-500 resize-none ${errors.message
+                                    ? 'border-secondary/50 focus:border-secondary focus:shadow-neon-pink'
+                                    : 'border-white/10 focus:border-primary focus:shadow-neon-cyan hover:border-white/20'
+                                    }`}
                             />
                             <div className="flex justify-between items-center mt-2 px-1">
                                 {errors.message ? (
@@ -225,26 +238,43 @@ const ContactForm = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-2">
-                            <button
-                                type="submit"
-                                className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/50 text-primary font-bold uppercase tracking-wider hover:bg-primary hover:text-black hover:border-primary hover:shadow-neon-cyan transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
-                                disabled={loading}
-                                aria-live="polite"
-                                aria-busy={loading}
-                            >
-                                {loading ? (
-                                    <>
-                                        <span className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" aria-hidden="true"></span>
-                                        <span>Sending...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <span>Send Message</span>
-                                        <i className="fas fa-paper-plane group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                                    </>
-                                )}
-                            </button>
+
+
+
+                        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-2">
+                            <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+                                <button
+                                    type="submit"
+                                    className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/50 text-primary font-bold uppercase tracking-wider hover:bg-primary hover:text-black hover:border-primary hover:shadow-neon-cyan transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
+                                    disabled={loading}
+                                    aria-live="polite"
+                                    aria-busy={loading}
+                                >
+                                    {loading ? (
+                                        <>
+                                            <span className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" aria-hidden="true"></span>
+                                            <span>Sending...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>Send Message</span>
+                                            <i className="fas fa-paper-plane group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                                        </>
+                                    )}
+                                </button>
+
+                                {/* reCAPTCHA - smaller and after button */}
+                                <div className="transform scale-75 origin-left">
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        sitekey="6LdZijUsAAAAAJywmY_KABHEYcRW_V9shKFSND6Q"
+                                        onChange={handleRecaptchaChange}
+                                        theme="dark"
+                                    />
+                                </div>
+
+                            </div>
+
                             <div className="text-gray-400 text-sm text-center md:text-right italic flex items-center gap-2">
                                 <i className="fas fa-lock text-primary" />
                                 I promise the confidentiality of your personal information
@@ -256,14 +286,14 @@ const ContactForm = () => {
 
             {/* Success Modal Overlay */}
             {showSuccess && (
-                <div 
+                <div
                     className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/60 animate-fade-in"
                     role="alert"
                     aria-live="assertive"
                     aria-atomic="true"
                     onClick={() => setShowSuccess(false)}
                 >
-                    <div 
+                    <div
                         className="glass-card p-10 md:p-12 rounded-2xl flex flex-col items-center text-center shadow-2xl max-w-md mx-4 transform scale-100 animate-bounce-in border-2 border-primary/50 relative"
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -275,7 +305,7 @@ const ContactForm = () => {
                         >
                             <i className="fas fa-times" />
                         </button>
-                        
+
                         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center mb-6 shadow-neon-cyan relative">
                             <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
                             <i className="fas fa-check text-5xl text-primary relative z-10" aria-hidden="true" />
@@ -284,7 +314,7 @@ const ContactForm = () => {
                             Message Sent Successfully!
                         </h4>
                         <p className="text-gray-300 mb-8 text-base leading-relaxed">
-                            Thank you for reaching out! I'll get back to you as soon as possible. 
+                            Thank you for reaching out! I'll get back to you as soon as possible.
                         </p>
                         <button
                             onClick={() => setShowSuccess(false)}
