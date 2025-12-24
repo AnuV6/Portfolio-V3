@@ -44,24 +44,55 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`}>
+            <head>
+                {/* Mobile browser theme color - set to black instead of cyan */}
+                <meta name="theme-color" content="#0a0a0a" />
+                <meta name="msapplication-navbutton-color" content="#0a0a0a" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                
+                {/* Suppress hydration warnings caused by browser extensions in development */}
+                {process.env.NODE_ENV === 'development' && (
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                (function() {
+                                    const originalError = console.error;
+                                    console.error = function(...args) {
+                                        if (
+                                            typeof args[0] === 'string' && 
+                                            (args[0].includes('Hydration') || 
+                                             args[0].includes('hydrated') ||
+                                             args[0].includes('bis_skin_checked'))
+                                        ) {
+                                            return;
+                                        }
+                                        originalError.apply(console, args);
+                                    };
+                                })();
+                            `,
+                        }}
+                    />
+                )}
+            </head>
             <body suppressHydrationWarning={true}>
                 {/* Skip Navigation Links */}
-                <a href="#main-content" className="skip-link">
+                <a href="#main-content" className="skip-link" suppressHydrationWarning>
                     Skip to main content
                 </a>
-                <a href="#contact" className="skip-link">
+                <a href="#contact" className="skip-link" suppressHydrationWarning>
                     Skip to contact
                 </a>
                 
                 <State>
                     <ErrorBoundary>
-                        <div className="min-h-screen bg-transparent text-white overflow-x-hidden relative">
+                        <div className="min-h-screen bg-transparent text-white overflow-x-hidden relative" suppressHydrationWarning>
                             <Preloader />
-                            <div id="trm-dynamic-content" className="w-full relative transition-opacity duration-500 ease-in-out">
+                            <div id="trm-dynamic-content" className="w-full relative transition-opacity duration-500 ease-in-out" suppressHydrationWarning>
                                 <div
                                     id="main-content"
                                     className="w-full min-h-screen transition-opacity duration-300"
                                     role="main"
+                                    suppressHydrationWarning
                                 >
                                     {children}
                                 </div>

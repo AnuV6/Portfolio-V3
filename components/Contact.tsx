@@ -242,7 +242,19 @@ const ContactForm = () => {
 
 
                         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-2">
-                            <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+                            <div className="flex flex-col items-center md:items-start gap-4 w-full md:w-auto">
+                                {/* reCAPTCHA - Mobile optimized */}
+                                <div className="w-full flex justify-center md:justify-start">
+                                    <div className="transform scale-[0.85] sm:scale-90 md:scale-100 origin-center md:origin-left">
+                                        <ReCAPTCHA
+                                            ref={recaptchaRef}
+                                            sitekey="6LdZijUsAAAAAJywmY_KABHEYcRW_V9shKFSND6Q"
+                                            onChange={handleRecaptchaChange}
+                                            theme="dark"
+                                        />
+                                    </div>
+                                </div>
+                                
                                 <button
                                     type="submit"
                                     className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/50 text-primary font-bold uppercase tracking-wider hover:bg-primary hover:text-black hover:border-primary hover:shadow-neon-cyan transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
@@ -262,17 +274,6 @@ const ContactForm = () => {
                                         </>
                                     )}
                                 </button>
-
-                                {/* reCAPTCHA - smaller and after button */}
-                                <div className="transform scale-75 origin-left">
-                                    <ReCAPTCHA
-                                        ref={recaptchaRef}
-                                        sitekey="6LdZijUsAAAAAJywmY_KABHEYcRW_V9shKFSND6Q"
-                                        onChange={handleRecaptchaChange}
-                                        theme="dark"
-                                    />
-                                </div>
-
                             </div>
 
                             <div className="text-gray-400 text-sm text-center md:text-right italic flex items-center gap-2">

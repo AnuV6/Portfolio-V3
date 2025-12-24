@@ -118,17 +118,17 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                 <section id="home" className="relative w-full">
                     <div className="container mx-auto px-4 md:px-8">
                         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 pt-24 pb-4">
-                            {/* Sidebar - Fixed height matching banner */}
+                            {/* Sidebar - Desktop only, hidden on mobile */}
                             {!noSidebar && (
-                                <aside className="hidden lg:block max-lg:hidden lg:w-[280px] xl:w-[320px] flex-shrink-0">
+                                <aside className="hidden lg:block lg:w-[280px] xl:w-[320px] flex-shrink-0">
                                     <div className="sticky top-32 h-[600px]">
                                         <ProfileSidebar />
                                     </div>
                                 </aside>
                             )}
 
-                            {/* Banner - Matches sidebar height */}
-                            <div className="w-full md:w-4/5 lg:flex-1 h-[600px] flex items-center mx-auto">
+                            {/* Banner - Full width on mobile, flex-1 on desktop */}
+                            <div className="w-full lg:flex-1 min-h-[600px] lg:h-[600px] flex items-center">
                                 <HeroBanner centerTitle={noSidebar} />
                             </div>
                         </div>

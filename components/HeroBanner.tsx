@@ -1,17 +1,8 @@
 "use client";
 import { context } from "@/context/context";
-import { sliderProps } from "@/utility/sliderProps";
 import { typing } from "@/utility/typing";
 import { useContext, useEffect } from "react";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-import { Autoplay, EffectFade, Grid, Navigation, Pagination, Parallax } from "swiper/modules";
 
 interface BannerProps {
     centerTitle?: boolean;
@@ -29,43 +20,6 @@ const HeroBanner = ({ centerTitle }: BannerProps) => {
     }
 };
 export default HeroBanner;
-
-// Background slide configuration
-const BACKGROUND_SLIDES = [
-    {
-        src: "/img/banner.webp",
-        alt: "Professional tech environment",
-        priority: true,
-    },
-    {
-        src: "/img/banner2.webp",
-        alt: "Professional workspace background",
-        priority: false,
-    },
-    {
-        src: "/img/banner3.avif",
-        alt: "Technology and coding background",
-        priority: false,
-    },
-];
-
-// Render background slide
-const BackgroundSlide = ({ src, alt, priority }: { src: string; alt: string; priority: boolean }) => (
-    <SwiperSlide className="!w-full !h-full">
-        <div className="relative w-full h-full">
-            <Image
-                src={src}
-                alt={alt}
-                fill
-                className="object-cover"
-                sizes="100vw"
-                quality={90}
-                priority={priority}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-        </div>
-    </SwiperSlide>
-);
 
 // Action buttons component
 const ActionButtons = ({ noSidebar, onPortfolioClick }: { noSidebar?: boolean; onPortfolioClick: (e: React.MouseEvent<HTMLAnchorElement>) => void }) => (
@@ -127,26 +81,58 @@ const SliderBanner = ({ noSidebar }: { noSidebar?: boolean }) => {
             data-scroll-speed={-1}
             aria-label="Hero banner"
         >
-            {/* Background Slideshow */}
-            <div className="absolute inset-0">
-                <Swiper
-                    modules={[Autoplay, EffectFade, Grid, Navigation, Pagination, Parallax]}
-                    {...sliderProps.homeSlider}
-                    className="w-full h-full"
-                >
-                    {BACKGROUND_SLIDES.map((slide, index) => (
-                        <BackgroundSlide
-                            key={index}
-                            src={slide.src}
-                            alt={slide.alt}
-                            priority={slide.priority}
-                        />
-                    ))}
-                </Swiper>
+            {/* Animated Gradient Background */}
+            <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+                {/* Base gradient layer with animation */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-gradient-shift"></div>
+                
+                {/* Animated gradient orbs with smoother transitions */}
+                <div className="absolute top-0 left-0 w-full h-full">
+                    {/* Primary orb - top left */}
+                    <div className="absolute top-1/4 -left-1/4 w-[30rem] h-[30rem] bg-gradient-to-br from-primary/25 to-cyan-500/15 rounded-full blur-[120px] animate-float-slow opacity-60"></div>
+                    
+                    {/* Secondary orb - bottom right */}
+                    <div className="absolute bottom-1/4 -right-1/4 w-[35rem] h-[35rem] bg-gradient-to-tl from-cyan-400/20 to-primary/10 rounded-full blur-[130px] animate-float-slower opacity-50" style={{ animationDelay: '2s' }}></div>
+                    
+                    {/* Tertiary orb - center */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] bg-gradient-to-r from-primary/15 via-cyan-500/20 to-primary/15 rounded-full blur-[140px] animate-pulse-slow opacity-40"></div>
+                    
+                    {/* Additional accent orbs */}
+                    <div className="absolute top-[15%] right-[20%] w-[15rem] h-[15rem] bg-primary/15 rounded-full blur-[100px] animate-float opacity-30" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute bottom-[20%] left-[15%] w-[18rem] h-[18rem] bg-cyan-400/12 rounded-full blur-[110px] animate-float-slower opacity-35" style={{ animationDelay: '3s' }}></div>
+                </div>
+
+                {/* Animated mesh gradient overlay */}
+                <div className="absolute inset-0 opacity-30 mix-blend-overlay">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-cyan-500/10 animate-gradient-rotate"></div>
+                </div>
+
+                {/* Grid pattern overlay */}
+                <div className="absolute inset-0 opacity-[0.02]" style={{
+                    backgroundImage: `
+                        linear-gradient(rgba(0, 212, 204, 0.3) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 212, 204, 0.3) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '60px 60px'
+                }}></div>
+
+                {/* Animated particles with glow */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-[18%] left-[12%] w-2.5 h-2.5 bg-primary rounded-full animate-float-particle shadow-[0_0_10px_rgba(0,212,204,0.6)]" style={{ animationDuration: '4s' }}></div>
+                    <div className="absolute top-[65%] left-[78%] w-2 h-2 bg-cyan-400 rounded-full animate-float-particle shadow-[0_0_8px_rgba(0,212,204,0.5)]" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+                    <div className="absolute top-[45%] left-[55%] w-1.5 h-1.5 bg-primary/80 rounded-full animate-float-particle shadow-[0_0_6px_rgba(0,212,204,0.4)]" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+                    <div className="absolute top-[75%] left-[25%] w-2 h-2 bg-cyan-400/80 rounded-full animate-float-particle shadow-[0_0_8px_rgba(0,212,204,0.5)]" style={{ animationDuration: '5.5s', animationDelay: '0.5s' }}></div>
+                    <div className="absolute top-[30%] left-[85%] w-1.5 h-1.5 bg-primary rounded-full animate-float-particle shadow-[0_0_6px_rgba(0,212,204,0.4)]" style={{ animationDuration: '4.5s', animationDelay: '1.5s' }}></div>
+                </div>
+
+                {/* Subtle noise texture for depth */}
+                <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E")`
+                }}></div>
             </div>
 
             {/* Banner Content */}
-            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none p-6 md:p-10 lg:p-12">
+            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none p-6 md:p-10 lg:p-12">
                 <div
                     className="w-full pointer-events-auto"
                     data-scroll
@@ -183,7 +169,7 @@ const SliderBanner = ({ noSidebar }: { noSidebar?: boolean }) => {
                         </div>
 
                         {/* Subtitle */}
-                        <p className={`text-base md:text-lg lg:text-xl text-gray-300 mt-3 mb-8 md:mb-10 lg:mb-12 ${noSidebar ? 'mx-auto' : ''} max-w-3xl leading-relaxed font-medium`}>
+                        <p className={`text-base md:text-lg lg:text-xl text-gray-300 mt-3 mb-6 md:mb-8 ${noSidebar ? 'mx-auto' : ''} max-w-3xl leading-relaxed font-medium`}>
                             DevOps Engineer • Cyber Security Enthusiast • Cloud Automation Specialist
                         </p>
 
