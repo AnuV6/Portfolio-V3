@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const ProfileSidebar = () => {
     useEffect(() => {
-        typing();
+        // typing();
     }, []);
 
     return (
@@ -81,7 +81,7 @@ const ProfileSidebar = () => {
 
                     {/* info */}
                     <ul className="space-y-3 relative z-20">
-                        
+
                         {/* country */}
                         <li className="flex justify-between items-center text-[15px] px-1">
                             <span className="text-gray-400">Residence:</span>
@@ -102,22 +102,10 @@ const ProfileSidebar = () => {
 
                     {/* Download CV Button - First */}
                     <div className="text-center mt-6 z-50 relative">
-                        <a 
-                            href="/files/AnupaDinuranga_cv.pdf" 
-                            download="AnupaDinuranga_CV.pdf"
+                        <a
+                            href="#contact"
                             className="inline-block px-8 py-3 rounded-full border-2 border-primary/30 text-primary bg-primary/10 font-bold text-base uppercase tracking-wider hover:bg-primary hover:text-black hover:border-primary hover:shadow-neon-cyan transition-all duration-300 transform hover:scale-105"
                             aria-label="Download CV"
-                        >
-                            Download CV <i className="fas fa-download ml-2" aria-hidden="true" />
-                        </a>
-                    </div>
-
-                    {/* Email Me Button - Second */}
-                    <div className="text-center mt-3 cursor-pointer z-50 relative">
-                        <a 
-                            href="#contact" 
-                            className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-primary to-blue-500 text-black font-bold text-base uppercase tracking-wider hover:shadow-neon-cyan transition-all duration-300 transform hover:scale-105"
-                            aria-label="Contact me"
                         >
                             Contact Me <i className="far fa-envelope ml-2" aria-hidden="true" />
                         </a>

@@ -2,7 +2,6 @@
 import Contact from "@/components/Contact";
 import StatsCounter from "@/components/StatsCounter";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
-import SkillBadges from "@/components/SkillBadges";
 import AboutSection from "@/components/AboutSection";
 import Achievements from "@/components/Achievements";
 import { context } from "@/context/context";
@@ -47,7 +46,7 @@ const Index = () => {
         <TrueManLayout onePage={true}>
             {/* Spacing for better visibility */}
             <div className="h-8" />
-            
+
             {/* About Me */}
             <AboutSection />
             <div className="h-12" />
@@ -75,7 +74,7 @@ const Index = () => {
 
             {/* Achievements */}
             <Achievements />
-            <div className="h-16" />
+
 
             {/* ========== PORTFOLIO SECTION ========== */}
             {/* Portfolio - Projects Only */}

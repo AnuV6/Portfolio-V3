@@ -8,8 +8,10 @@
   --color-secondary: #ff1a6e;
   --color-dim: rgba(255, 255, 255, 0.05);
   --color-text-primary: #f0f0f0;
-  --color-text-secondary: #d1d5db; /* Improved from #b8b8b8 for better contrast */
-  --color-text-muted: #9ca3af; /* Improved from #808080 for better contrast */
+  --color-text-secondary: #d1d5db;
+  /* Improved from #b8b8b8 for better contrast */
+  --color-text-muted: #9ca3af;
+  /* Improved from #808080 for better contrast */
 
   /* Glass Colors */
   --color-glass-bg: rgba(255, 255, 255, 0.03);
@@ -79,11 +81,12 @@
       background-position: 100% 50%;
     }
   }
-  
+
   @keyframes shimmer {
     0% {
       transform: translateX(-100%);
     }
+
     100% {
       transform: translateX(100%);
     }
@@ -94,6 +97,7 @@
       opacity: 0;
       transform: translateY(10px);
     }
+
     100% {
       opacity: 1;
       transform: translateY(0);
@@ -101,31 +105,41 @@
   }
 
   @keyframes float-slow {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translate(0, 0) scale(1);
     }
+
     33% {
       transform: translate(30px, -30px) scale(1.05);
     }
+
     66% {
       transform: translate(-20px, 20px) scale(0.95);
     }
   }
 
   @keyframes float-slower {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translate(0, 0) scale(1);
     }
+
     50% {
       transform: translate(-40px, -25px) scale(1.08);
     }
   }
 
   @keyframes pulse-slow {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 0.4;
       transform: translate(-50%, -50%) scale(1);
     }
+
     50% {
       opacity: 0.6;
       transform: translate(-50%, -50%) scale(1.1);
@@ -133,9 +147,12 @@
   }
 
   @keyframes gradient-shift {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
@@ -145,24 +162,30 @@
     0% {
       transform: rotate(0deg) scale(1.5);
     }
+
     100% {
       transform: rotate(360deg) scale(1.5);
     }
   }
 
   @keyframes float-particle {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translate(0, 0);
       opacity: 0.4;
     }
+
     25% {
       transform: translate(10px, -15px);
       opacity: 0.8;
     }
+
     50% {
       transform: translate(-5px, -30px);
       opacity: 1;
     }
+
     75% {
       transform: translate(-15px, -15px);
       opacity: 0.6;
@@ -237,18 +260,21 @@ a:hover {
 
 /* Profile name override - force larger size */
 .profile-name {
-  font-size: 1rem !important; /* 24px mobile */
+  font-size: 1rem !important;
+  /* 24px mobile */
 }
 
 @media (min-width: 768px) {
   .profile-name {
-    font-size: 1.25rem !important; /* 30px tablet */
+    font-size: 1.25rem !important;
+    /* 30px tablet */
   }
 }
 
 @media (min-width: 1024px) {
   .profile-name {
-    font-size: 2rem !important; /* 36px desktop */
+    font-size: 2rem !important;
+    /* 36px desktop */
   }
 }
 
@@ -259,8 +285,8 @@ a:hover {
 
 .neon-typed-text {
   @apply text-primary;
-  text-shadow: 
-    0 0 2px rgba(0, 212, 204, 0.8), 
+  text-shadow:
+    0 0 2px rgba(0, 212, 204, 0.8),
     0 0 4px rgba(0, 212, 204, 0.4);
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -282,10 +308,14 @@ a:hover {
 }
 
 @keyframes blink {
-  0%, 50% {
+
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+
+  51%,
+  100% {
     opacity: 0;
   }
 }
@@ -325,11 +355,28 @@ select:focus-visible {
 
 /* Skip Link */
 .skip-link {
-  @apply absolute -top-10 left-0 bg-primary text-black px-4 py-2 z-[1000] font-bold no-underline transition-all;
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
+  background: #00d4cc;
+  color: black;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .skip-link:focus {
-  @apply top-0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  padding: 1rem 2rem;
 }
 
 /* Reduced Motion */
@@ -343,14 +390,14 @@ select:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   /* Disable parallax effects */
   [data-scroll],
   [data-swiper-parallax-y],
   [data-swiper-parallax-scale] {
     transform: none !important;
   }
-  
+
   /* Disable bounce animation */
   .animate-bounce {
     animation: none !important;
@@ -378,6 +425,13 @@ aside {
   max-height: calc(100vh - 8rem);
 }
 
+@media (max-width: 1024px) {
+  aside {
+    max-height: none;
+    display: block !important;
+  }
+}
+
 /* Mobile Touch Targets */
 @media (max-width: 768px) {
 
@@ -385,7 +439,7 @@ aside {
   a {
     @apply min-h-[44px] min-w-[44px];
   }
-  
+
   /* Ensure padding for small touch targets */
   button:not(.no-min-size),
   a:not(.no-min-size) {
@@ -393,21 +447,23 @@ aside {
     min-width: 44px;
     padding: 12px;
   }
-  
+
   /* Fix horizontal scroll */
   body {
     overflow-x: hidden;
   }
-  
+
   /* Improve readability on mobile */
   body {
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px;
+    /* Prevent zoom on iOS */
   }
-  
+
   input,
   textarea,
   select {
-    font-size: 16px; /* Prevent zoom on focus */
+    font-size: 16px;
+    /* Prevent zoom on focus */
   }
 }
 
@@ -558,11 +614,9 @@ aside {
   right: 0;
   bottom: 0;
   border-radius: inherit;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    var(--spotlight-color),
-    transparent 40%
-  );
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+      var(--spotlight-color),
+      transparent 40%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -596,7 +650,7 @@ aside {
   pointer-events: none !important;
 }
 
-.fancybox__container > * {
+.fancybox__container>* {
   pointer-events: auto !important;
 }
 
@@ -673,6 +727,7 @@ aside {
 
 /* Mobile-specific Fancybox styles */
 @media (max-width: 768px) {
+
   /* Larger close button for mobile touch targets */
   .fancybox-custom .fancybox__button--close {
     top: 10px !important;
@@ -765,9 +820,12 @@ aside {
 
 /* Pulse animation for close button on mobile */
 @keyframes pulse-close-button {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 15px rgba(0, 212, 204, 0.4);
   }
+
   50% {
     box-shadow: 0 0 30px rgba(0, 212, 204, 0.7);
   }
@@ -775,9 +833,12 @@ aside {
 
 /* Bounce hint animation */
 @keyframes bounce-hint {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
+
   50% {
     transform: translateX(-50%) translateY(5px);
   }
@@ -790,22 +851,23 @@ aside {
 }
 
 /* reCAPTCHA iframe wrapper */
-.g-recaptcha > div {
+.g-recaptcha>div {
   @apply max-w-full;
 }
 
 /* Mobile reCAPTCHA improvements */
 @media (max-width: 640px) {
+
   /* Ensure reCAPTCHA doesn't overflow on small screens */
   .g-recaptcha {
     @apply w-full flex justify-center;
   }
-  
+
   /* Make sure iframe is centered and fits */
-  .g-recaptcha > div > div {
+  .g-recaptcha>div>div {
     @apply mx-auto;
   }
-  
+
   /* Add some breathing room on mobile */
   .g-recaptcha iframe {
     @apply max-w-full;
@@ -822,6 +884,7 @@ aside {
 
 /* Mobile Layout Fixes - Prevent banner/sidebar overlay issues */
 @media (max-width: 1023px) {
+
   /* Ensure home section doesn't have positioning conflicts */
   #home {
     @apply relative;
@@ -834,7 +897,7 @@ aside {
   }
 
   /* Force banner to be full width and prevent overflow */
-  #home > .container > div {
+  #home>.container>div {
     @apply w-full;
   }
 
@@ -852,6 +915,7 @@ aside {
 
 /* Extra mobile specificity for very small screens */
 @media (max-width: 640px) {
+
   /* Remove any potential margins/padding that could cause overlay */
   #home {
     @apply overflow-hidden;

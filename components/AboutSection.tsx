@@ -1,8 +1,8 @@
 const AboutSection = () => {
     return (
-        <section 
+        <section
             id="about"
-            className="w-full" 
+            className="w-full"
             aria-labelledby="about-heading"
             data-scroll
             data-scroll-repeat
@@ -10,7 +10,7 @@ const AboutSection = () => {
         >
             <div className="w-full">
                 {/* title */}
-                <h2 id="about-heading" className="mb-6 relative flex items-end justify-between border-b border-white/10 pb-4 after:absolute after:bottom-[-1px] after:left-0 after:w-24 after:h-[2px] after:bg-primary after:shadow-neon-cyan">
+                <h2 id="about-heading" className="mb-6 relative flex items-end justify-between border-b border-white/10 pb-4">
                     <span className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-primary">About Me</span>
                     <i className="fas fa-user-astronaut text-2xl text-gray-700" aria-hidden="true" />
                 </h2>

@@ -155,7 +155,7 @@ const ContactForm = () => {
                     </a>
                 </div>
             </div>
-            <div className="col-lg-12 mb-12">
+            <div className="col-lg-12">
                 <div className="glass-card p-6 md:p-10 rounded-2xl relative overflow-hidden shadow-glass" data-scroll data-scroll-offset={40}>
                     {/* Decorative Elements */}
                     <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-primary/20 to-transparent rounded-tr-2xl pointer-events-none" />
@@ -254,7 +254,7 @@ const ContactForm = () => {
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <button
                                     type="submit"
                                     className="w-full md:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border-2 border-primary/50 text-primary font-bold uppercase tracking-wider hover:bg-primary hover:text-black hover:border-primary hover:shadow-neon-cyan transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"

@@ -118,17 +118,17 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                 <section id="home" className="relative w-full">
                     <div className="container mx-auto px-4 md:px-8">
                         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 pt-24 pb-4">
-                            {/* Sidebar - Desktop only, hidden on mobile */}
+                            {/* Sidebar - Visible on mobile (stacked) and desktop */}
                             {!noSidebar && (
-                                <aside className="hidden lg:block lg:w-[280px] xl:w-[320px] flex-shrink-0">
-                                    <div className="sticky top-32 h-[600px]">
+                                <aside className="w-full lg:w-[280px] xl:w-[320px] flex-shrink-0 order-1 lg:order-none mb-6 lg:mb-0">
+                                    <div className="lg:sticky lg:top-32">
                                         <ProfileSidebar />
                                     </div>
                                 </aside>
                             )}
 
                             {/* Banner - Full width on mobile, flex-1 on desktop */}
-                            <div className="w-full lg:flex-1 min-h-[600px] lg:h-[600px] flex items-center">
+                            <div className="w-full lg:flex-1 min-h-[450px] lg:h-[600px] flex items-center order-2 lg:order-none">
                                 <HeroBanner centerTitle={noSidebar} />
                             </div>
                         </div>
@@ -142,7 +142,6 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
                             <div className="mt-12 md:mt-16 lg:mt-20">
                                 {children}
                             </div>
-                            <div className="w-full h-px bg-white/10 my-10" />
                             <Footer />
                         </main>
                     </div>
@@ -150,12 +149,13 @@ const TrueManLayout = ({ children, noSidebar, onePage }: TrueManLayoutProps) => 
             </div>
 
             {/* Back‑to‑top button */}
+            {/* Back‑to‑top button - Glassmorphic Style */}
             <button
                 onClick={scrollToTop}
-                className={`back-to-top ${showBackToTop ? "visible" : ""} w-12 h-12 rounded-full bg-primary text-black flex items-center justify-center shadow-neon-cyan hover:scale-110 transition-transform duration-300`}
+                className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-xl bg-black/40 backdrop-blur-md border border-primary/50 text-primary flex items-center justify-center shadow-[0_0_15px_rgba(0,212,204,0.3)] hover:bg-primary hover:text-black hover:shadow-[0_0_30px_rgba(0,212,204,0.6)] hover:-translate-y-1 active:scale-95 transition-all duration-300 group ${showBackToTop ? "translate-y-0 opacity-100 visible" : "translate-y-10 opacity-0 invisible"}`}
                 aria-label="Back to top"
             >
-                <i className="fas fa-arrow-up" />
+                <i className="fas fa-chevron-up text-lg group-hover:animate-bounce" />
             </button>
         </Fragment>
     );
